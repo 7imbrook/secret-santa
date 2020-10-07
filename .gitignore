@@ -3,4 +3,5 @@ venv/
 __pycache__/
 .vscode/
 db.sqlite
-santa.egg-info/
+santa_7imbrook.egg-info/
+dist/
