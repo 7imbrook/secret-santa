@@ -10,7 +10,4 @@ auth_token = ""
 
 def send_message(message, number):
     client = Client(account_sid, auth_token)
-
-    message = client.messages.create(
-        body=message, from_="", to=number
-    )
+    message = client.messages.create(body=message, from_="", to=number)
