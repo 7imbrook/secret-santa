@@ -8,6 +8,7 @@ account_sid = ""
 auth_token = ""
 
 
-def send_message(message, number):
-    client = Client(account_sid, auth_token)
-    message = client.messages.create(body=message, from_="", to=number)
+def send_message(message: str, number: str) -> None:
+    # client = Client(account_sid, auth_token)
+    # message = client.messages.create(body=message, from_="", to=number)
+    print(f"[to: {number}] {message}")

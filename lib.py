@@ -1,15 +1,8 @@
-from os import P_NOWAITO
 import sqlite3
-from typing import Sequence
-from dataclasses import dataclass
+from random import shuffle
+from typing import Sequence, Tuple
 from util import InvalidConfiguration, MaxIterationsReached, rotate
-
-
-@dataclass
-class Person:
-    name: str
-    number: str  # Yeah sure doesn't matter
-    household: str
+from type import Person
 
 
 def load_people() -> Sequence[Person]:
@@ -31,6 +24,19 @@ def load_people() -> Sequence[Person]:
         ]
 
 
+def _household_rule(give: Person, recieve: Person) -> bool:
+    return give.household is not recieve.household
+
+
+def _post_validate_rule(pairs: Sequence[Tuple[Person, Person]]) -> bool:
+    households = set()
+    givings = set()
+    for g, r in pairs:
+        households.add(g.household)
+        givings.add(f"{g.household}{r.household}")
+    return (len(households) * 2) == len(givings)
+
+
 def get_shuffled(people: Sequence[Person], max_iterations: int):
     while True:
         if len(people) == 0:
@@ -38,13 +44,17 @@ def get_shuffled(people: Sequence[Person], max_iterations: int):
 
         pairs = list(zip(people, rotate(people)))
         for give, recieve in pairs:
-            if give.household == recieve.household:
-                # Break skips the else block the breaks the while true
-                max_iterations -= 1
-                if max_iterations <= 0:
-                    raise MaxIterationsReached()
+            max_iterations -= 1
+            if max_iterations <= 0:
+                raise MaxIterationsReached()
+            # Validations
+            if not all([_household_rule(give, recieve)]):
+                # break to else break
                 break
         else:
-            # Break out of the while true
-            break
+            # Break out of the while true if all pairs validated
+            if _post_validate_rule(pairs):
+                break
+        shuffle(people)
+
     return pairs

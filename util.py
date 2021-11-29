@@ -13,3 +13,8 @@ class MaxIterationsReached(Exception):
 
 class InvalidConfiguration(Exception):
     pass
+
+
+INTRO = "Hi get ready for Timbrook secret santa this year!"
+MESSAGE = "{giver}, you'll be buying for {reciever} this year."
+FOLLOWUP = "No house rules have been set yet, follow up with the family."
