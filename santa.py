@@ -64,5 +64,17 @@ def new():
         )
 
 
+@main.command()
+@click.argument("message")
+def broadcast(message: str):
+    """
+    Sends message to michael
+    """
+    with sqlite3.connect("db.sqlite") as db:
+        numbers = db.execute("select number from people")
+    for (number,) in numbers:
+        send_message(message, number, confirm=True)
+
+
 if __name__ == "__main__":
     main()

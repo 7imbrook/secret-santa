@@ -15,6 +15,6 @@ class InvalidConfiguration(Exception):
     pass
 
 
-INTRO = "Hi get ready for Timbrook secret santa this year!"
+INTRO = "Hi, get ready for Timbrook Secret Santa!"
 MESSAGE = "{giver}, you'll be buying for {reciever} this year."
-FOLLOWUP = "No house rules have been set yet, follow up with the family."
+FOLLOWUP = "No house rules have been set yet, follow up with the family. I've fixed Johns issue so this is the real deal now."

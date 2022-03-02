@@ -11,7 +11,5 @@
 ./santa.py add-person Andy 6073294113 A
 ./santa.py add-person Kelli 5182656804 A
 
-./santa.py add-person John 5037097914 E
+./santa.py add-person John 5037067914 E
 ./santa.py add-person Abbey 6073462339 E
-
-./santa.py shuffle
